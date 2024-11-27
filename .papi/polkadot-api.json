@@ -1,0 +1,26 @@
+{
+  "version": 0,
+  "descriptorPath": ".papi/descriptors",
+  "entries": {
+    "kusama": {
+      "chain": "ksmcc3",
+      "metadata": ".papi\\metadata\\kusama.scale"
+    },
+    "polkadotD": {
+      "chain": "polkadot",
+      "metadata": ".papi\\metadata\\polkadotD.scale"
+    },
+    "westend": {
+      "chain": "westend2",
+      "metadata": ".papi\\metadata\\westend.scale"
+    },
+    "polkadotAH": {
+      "chain": "polkadot_asset_hub",
+      "metadata": ".papi\\metadata\\polkadotAH.scale"
+    },
+    "polkadotC": {
+      "chain": "polkadot_collectives",
+      "metadata": ".papi\\metadata\\polkadotC.scale"
+    }
+  }
+}
