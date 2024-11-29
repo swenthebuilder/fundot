@@ -29,7 +29,7 @@ export type ChainSpec = {
   TokenId: string;
   blockExplorerUrl: string;
   ChainSpecs: string;
-  Descriptor?: Descriptors[ChainId];
+  Descriptor: Descriptors[ChainId];
 };
 
 // Create the array of chain specifications
@@ -55,6 +55,7 @@ const chains: ChainSpec[] = [
     TokenId: "Dot",
     blockExplorerUrl: "https://polkadot.subscan.io",
     ChainSpecs: polkadot,
+    Descriptor: polkadotD,
   },
   {
     id: "polkadotC",
@@ -77,6 +78,7 @@ const chains: ChainSpec[] = [
     TokenId: "Dot",
     blockExplorerUrl: "?",
     ChainSpecs: polkadot_collectives,
+    Descriptor: polkadotC,
   },
 
   {
@@ -100,8 +102,9 @@ const chains: ChainSpec[] = [
     TokenId: "Dot",
     blockExplorerUrl: "?",
     ChainSpecs: polkadot_asset_hub,
+    Descriptor: polkadotAH,
   },
-];
+] as const;
 
 export const GetChainById = (id: string): ChainSpec | undefined => {
   return chains.find((chain) => chain.id === id);

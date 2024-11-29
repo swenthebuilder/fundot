@@ -1,13 +1,15 @@
 import { MapCache } from "@/app/utils/useCache";
-import { getDescriptors } from "../ChainSpecs";
+import { GetChainById } from "../ChainSpecs";
 import { GetClient } from "../GetClient";
+import { ChainDefinition, TypedApi } from "polkadot-api";
 
 /// should not be used
-const ApiCache = new MapCache<string, unknown>();
+const ApiCache = new MapCache<string, TypedApi<ChainDefinition>>();
 
 export const GetApi = async (chainId: string) => {
   const client = await GetClient(chainId);
-  const Api = client.getTypedApi(getDescriptors(chainId));
+  const chainInfo = GetChainById(chainId);
+  const Api = client.getTypedApi(chainInfo!.Descriptor);
   ApiCache.set(chainId, Api);
   return Api;
 };

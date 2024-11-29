@@ -18,4 +18,5 @@ export const getSmoldotInstance = () => {
   }
   return smoldot;
 };
+
 //  smoldot.terminate()

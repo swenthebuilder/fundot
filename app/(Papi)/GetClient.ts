@@ -38,7 +38,7 @@ const lightRpc = async (chainId: string) => {
     ? await getScProvider(chainId)
     : await getSmolProvider(chainId);
 };
-const wssRpc = async (chainId: string) => {
+const wssRpc = (chainId: string) => {
   const chainInfo = GetChainById(chainId);
   if (!chainInfo) {
     throw new Error(`No chain found for ID: ${chainId}`);
