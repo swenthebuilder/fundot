@@ -1,26 +1,18 @@
-import { kusama, polkadotD, westend ,polkadotC ,polkadotAH } from "@polkadot-api/descriptors";
-import { polkadot, polkadot_asset_hub,polkadot_collectives } from "polkadot-api/chains"
+import { polkadotD, polkadotC, polkadotAH } from "@polkadot-api/descriptors";
+import {
+  polkadot,
+  polkadot_asset_hub,
+  polkadot_collectives,
+} from "polkadot-api/chains";
 
-
-const IDescriptors = {
-  polkadot: polkadotD,
-  kusama: kusama,
-  westend: westend,
-  polkadotAH: polkadotAH,
-  polkadotC: polkadotC,
-} as const;
-
-export type Descriptors = typeof IDescriptors;
-
-export type ChainId = keyof Descriptors;
-
-export const getDescriptors = (id: string): Descriptors[ChainId] => {
-  return IDescriptors[id as ChainId];
+type DescriptorMap = {
+  polkadot: typeof polkadotD;
+  polkadotC: typeof polkadotC;
+  polkadotAH: typeof polkadotAH;
 };
 
-// Define the type for chain specification
 export type ChainSpec = {
-  id: string;
+  id: keyof DescriptorMap;
   name: string;
   wsUrl: string[];
   relay: string;
@@ -29,14 +21,14 @@ export type ChainSpec = {
   TokenId: string;
   blockExplorerUrl: string;
   ChainSpecs: string;
-  Descriptor: Descriptors[ChainId];
+  Descriptor: DescriptorMap[keyof DescriptorMap];
 };
 
-// Create the array of chain specifications
-const chains: ChainSpec[] = [
+// array of chain specifications
+export const chains: ChainSpec[] = [
   {
     id: "polkadot",
-    name: "polkadot",
+    name: "Polkadot",
     wsUrl: [
       "wss://polkadot-rpc.dwellir.com",
       "wss://rpc.ibp.network/polkadot",
@@ -59,7 +51,7 @@ const chains: ChainSpec[] = [
   },
   {
     id: "polkadotC",
-    name: "polkadotCollectives",
+    name: "Polkadot Collectives",
     wsUrl: [
       "wss://polkadot-rpc.dwellir.com",
       "wss://rpc.ibp.network/polkadot",
@@ -72,7 +64,7 @@ const chains: ChainSpec[] = [
       "wss://rockx-dot.w3node.com/polka-public-dot/ws",
       "wss://dot-rpc.stakeworld.io",
     ],
-    relay: "polkadot", 
+    relay: "polkadot",
     paraId: undefined,
     logo: "?",
     TokenId: "Dot",
@@ -83,19 +75,19 @@ const chains: ChainSpec[] = [
 
   {
     id: "polkadotAH",
-    name: "polkadot Asset Hub",
+    name: "Polkadot Asset Hub",
     wsUrl: [
-			"wss://sys.ibp.network/statemint",
-			"wss://sys.dotters.network/statemint",
-			"wss://sys.ibp.network/asset-hub-polkadot",
-			"wss://sys.dotters.network/asset-hub-polkadot",
-			"wss://asset-hub-polkadot-rpc.dwellir.com",
-			"wss://statemint-rpc-tn.dwellir.com",
-			"wss://rpc-asset-hub-polkadot.luckyfriday.io",
-			"wss://polkadot-asset-hub-rpc.polkadot.io",
-			"wss://dot-rpc.stakeworld.io/assethub",
-			"wss://statemint-rpc.dwellir.com"
-		],
+      "wss://sys.ibp.network/statemint",
+      "wss://sys.dotters.network/statemint",
+      "wss://sys.ibp.network/asset-hub-polkadot",
+      "wss://sys.dotters.network/asset-hub-polkadot",
+      "wss://asset-hub-polkadot-rpc.dwellir.com",
+      "wss://statemint-rpc-tn.dwellir.com",
+      "wss://rpc-asset-hub-polkadot.luckyfriday.io",
+      "wss://polkadot-asset-hub-rpc.polkadot.io",
+      "wss://dot-rpc.stakeworld.io/assethub",
+      "wss://statemint-rpc.dwellir.com",
+    ],
     relay: "polkadot", // This is a relay chain
     paraId: 1000,
     logo: "?",

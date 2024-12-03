@@ -7,6 +7,7 @@ import { BasicStorage } from "./utils/UseLocalStorage";
 export interface Settings {
   lightClients: boolean;
   customWWS?: boolean | null;
+  chain: string;
 }
 
 // Instantiate BasicStorage for settings
@@ -23,6 +24,7 @@ export function GlobeSettings() {
       settings.set("settings", {
         lightClients: true,
         customWWS: false,
+        chain: "polkadot",
       });
     }
   }, []);
